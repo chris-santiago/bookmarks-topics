@@ -34,7 +34,7 @@ Once you've completed the prerequisites and setup the project environment, you c
 task cluster-bookmarks -- "bookmarks.input_path=your/path/to/bookmarks.html"
 ```
 
-This will parse your bookmarks file and fetch content from all the bookmarked URLs, before running the clustering algorithm. **You may not want to organized ALL of your bookmarks, but rather a subset.** In this case, you can pass a comma-separated list of specific folders:
+This will parse your bookmarks file and fetch content from all the bookmarked URLs, before running the clustering algorithm. **You may not want to organize ALL of your bookmarks, but rather a subset.** In this case, you can pass a comma-separated list of specific folders:
 
 ```bash
 task cluster-bookmarks -- "bookmarks.input_path=your/path/to/bookmarks.html" "bookmarks.folders=My first folder,My second folder"
