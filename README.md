@@ -37,10 +37,12 @@ task cluster-bookmarks -- "bookmarks.input_path=your/path/to/bookmarks.html"
 This will parse your bookmarks file and fetch content from all the bookmarked URLs, before running the clustering algorithm. **You may not want to organize ALL of your bookmarks, but rather a subset.** In this case, you can pass a comma-separated list of specific folders:
 
 ```bash
-task cluster-bookmarks -- "bookmarks.input_path=your/path/to/bookmarks.html" "bookmarks.folders=My first folder,My second folder"
+task cluster-bookmarks -- "bookmarks.input_path=your/path/to/bookmarks.html" "bookmarks.folders=[My first folder,My second folder]"
 ```
 
 Once complete, your re-organized bookmarks are placed within a newly-created `ouputs/topics/` directory, within this project's root directory. That directory is organized by date and time; find the folder that corresponds with your most recent run and import the `new_bookmarks.html` file back into your browser. You can also view a breakdown of bookmarks and topics in the `bookmarks_topics.json` file, within that same directory.
+
+**Note**: If you haven't added `task` to your PATH then you can replace that command with `./bin/task`
 
 ### Example Output
 
