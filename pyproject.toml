@@ -1,0 +1,21 @@
+[project]
+name = "bookmarks-topics"
+version = "0.1.0"
+description = "Topic modeling for web bookmarks"
+authors = [
+    {name = "chris-santiago", email = "cjsantiago@gatech.edu"},
+]
+dependencies = [
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.7.3",
+]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

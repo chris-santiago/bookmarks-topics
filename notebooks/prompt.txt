@@ -1,0 +1,8 @@
+I have a topic that contains the following documents: 
+[DOCUMENTS]
+The topic is described by the following keywords: [KEYWORDS]
+
+Based on the information above, extract a 1-2 word topic label in the following format:
+topic: <topic label>
+
+Note that the topic label should be formatted in Title Case.

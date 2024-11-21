@@ -1,0 +1,74 @@
+defaults:
+  - hydra: default
+  - paths: default
+  - prompt: openai/title_case
+
+seed: 9874
+
+bookmarks:
+  input_path: ${paths.tmp}/bookmarks_11_12_24.html
+  folders:
+    - EDU (Old 2021)
+    - Work
+    - MLOps
+  output_path: ${paths.tmp}/bookmarks.pkl
+
+html:
+  input_path: ${paths.tmp}/bookmarks.pkl
+  output_path: ${paths.tmp}/raw_html.pkl
+
+parse:
+  input_path: ${paths.tmp}/raw_html.pkl
+  output_path: ${paths.tmp}/parsed_html.pkl
+  websites_path: ${paths.tmp}/websites.pkl
+
+topics:
+  input_path: ${paths.tmp}/websites.pkl
+  topics_path: ${paths.tmp}/topics.json
+  truncate: 500
+  bookmark_topics_path: ${hydra:runtime.output_dir}/bookmark_topics.json
+  bookmark_html_path:  ${hydra:runtime.output_dir}/new_bookmarks.html
+  topic_info_path: ${hydra:runtime.output_dir}/topic_info.csv
+  model_pkl_path: ${hydra:runtime.output_dir}/fit_topic_model.pkl
+  model_pt_path: ${hydra:runtime.output_dir}/topic_model
+
+  embedding_model:
+    _target_: sentence_transformers.SentenceTransformer
+    model_name_or_path: thenlper/gte-small
+    trust_remote_code: True
+
+  umap_model:
+    _target_: umap.UMAP
+    n_neighbors: 5
+    n_components: 10
+    metric: cosine
+
+  ctfidf_model:
+    _target_: bertopic.vectorizers.ClassTfidfTransformer
+    reduce_frequent_words: True
+
+  keybert_model:
+    _target_: bertopic.representation.KeyBERTInspired
+    top_n_words: 10
+    nr_repr_docs: 10
+    nr_samples: 500
+    nr_candidate_words: 100
+    random_state: ${seed}
+
+  openai_model:
+    _target_: bertopic.representation.OpenAI
+    model: gpt-3.5-turbo
+    delay_in_seconds: 0.12
+    chat: True
+    nr_docs: 10
+
+  topic_model:
+    _target_: bertopic.BERTopic
+    top_n_words: 10
+    n_gram_range:
+      _target_: builtins.tuple
+      _args_:
+        - [ 1, 1 ]
+    min_topic_size: 5
+
+

@@ -1,0 +1,15 @@
+# Hydra automatically creates an output directory used to store log files and save yaml configs.
+# This directory can be configured by setting hydra.run.dir (for single hydra runs) or
+# hydra.sweep.dir/hydra.sweep.subdir (for multirun sweeps). At runtime, the path of the output
+# directory can be accessed via the hydra.runtime.output_dir variable.
+
+# Run output directory can contain user configuration variables:
+#     outputs/${now:%Y-%m-%d_%H-%M-%S}/opt:${optimizer.type}
+# Or all user overrides:
+#     ${hydra.job.override_dirname}/...
+
+run:
+  dir: outputs/${hydra.job.name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
+sweep:
+  dir: outputs/${hydra.job.name}/multirun
+  subdir: ${now:%Y-%m-%d}/${now:%H-%M-%S}

@@ -1,0 +1,6 @@
+home: ${oc.env:HOME}
+repo: ${.home}/Dropbox/GitHub/bookmarks-topics
+conf: ${.repo}/conf
+src: ${.repo}/src
+pkg: ${.src}/bookmarks_topics
+tmp: ${.repo}/tmp

@@ -1,0 +1,63 @@
+version: "3"
+
+# You can also ask Task to include .env like files by using the dotenv: setting:
+dotenv: ['.env', '{{.ENV}}/.env.', '{{.HOME}}/.env']
+
+# If `--` is given in the CLI, all following parameters are added to a special .CLI_ARGS variable.
+# This is useful to forward arguments to another command.
+
+tasks:
+
+  check-config:
+    desc: Check Hydra configuration
+    cmds:
+      - python src/bookmarks_topics/topics.py --cfg all --resolve {{.CLI_ARGS}}
+
+  lint:
+    desc: Check source code for errors (will run before tasks)
+    cmd: ruff check src/ --ignore E501,F401,F841
+
+  bookmarks:
+    desc: Read bookmarks file
+    deps: [ lint ]
+    cmd: python src/bookmarks_topics/bookmarks.py {{.CLI_ARGS}}
+    sources:
+      - src/bookmarks_topics/bookmarks.py
+    generates:
+      - tmp/bookmarks.pkl
+
+  fetch-html:
+    desc: Get bookmarks raw html
+    deps: [ lint ]
+    cmd: python src/bookmarks_topics/html.py {{.CLI_ARGS}}
+    sources:
+      - src/bookmarks_topics/html.py
+      - tmp/bookmarks.pkl
+    generates:
+      - tmp/raw_html.pkl
+
+  parse-html:
+    desc: Parse bookmarks raw html
+    #    deps: [ lint ]
+    cmd: python src/bookmarks_topics/parse.py {{.CLI_ARGS}}
+    sources:
+      - src/bookmarks_topics/parse.py
+      - tmp/raw_html.pkl
+    generates:
+      - tmp/parsed_html.pkl
+      - tmp/websites.pkl
+
+  topics:
+    desc: Get topics
+    deps: [ lint ]
+    cmd: python src/bookmarks_topics/topics.py {{.CLI_ARGS}}
+
+  cluster-bookmarks:
+    desc: Run entire bookmarks clustering pipeline.
+    cmds:
+      - python src/bookmarks_topics/__init__.py
+      - task: bookmarks
+      - task: fetch-html
+      - task: parse-html
+      - task: topics
+
