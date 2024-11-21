@@ -1,6 +1,6 @@
 # bookmarks-topics
 
-This project is a continuation of the stale [bookmarks_clustering](https://github.com/chris-santiago/bookmarks_clustering) project. It's been update to use newer embedding and generative models, mostly via [BERTopic](https://maartengr.github.io/BERTopic/index.html) library.
+This project is a continuation of the stale [bookmarks_clustering](https://github.com/chris-santiago/bookmarks_clustering) project. It's updated to use newer embedding and generative models, mostly via [BERTopic](https://maartengr.github.io/BERTopic/index.html) library.
 
 # Usage
 
