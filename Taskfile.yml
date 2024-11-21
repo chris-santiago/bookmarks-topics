@@ -29,9 +29,9 @@ tasks:
   fetch-html:
     desc: Get bookmarks raw html
     deps: [ lint ]
-    cmd: python src/bookmarks_topics/html.py {{.CLI_ARGS}}
+    cmd: python src/bookmarks_topics/fetch.py {{.CLI_ARGS}}
     sources:
-      - src/bookmarks_topics/html.py
+      - src/bookmarks_topics/fetch.py
       - tmp/bookmarks.pkl
     generates:
       - tmp/raw_html.pkl
