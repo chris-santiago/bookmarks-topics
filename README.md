@@ -20,7 +20,7 @@ OPENAI_KEY=sk-proj-_mySuperSecretOpenAIkey
 Clone this repo and install the project and dependencies:
 
 ```bash
-git clone bookmarks-topics
+git clone https://github.com/chris-santiago/bookmarks-topics.git
 cd bookmarks-topics
 conda env create -f environment.yaml
 pip install .
