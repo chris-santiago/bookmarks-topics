@@ -174,3 +174,4 @@ notebooks/*
 !notebooks/prompt.txt
 !notebooks/README.md
 !notebooks/topics.ipynb
+/conf/paths/home.yaml

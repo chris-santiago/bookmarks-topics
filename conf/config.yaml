@@ -1,6 +1,6 @@
 defaults:
   - hydra: default
-  - paths: default
+  - paths: home
   - prompt: openai/title_case
 
 seed: 9874
