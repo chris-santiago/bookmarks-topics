@@ -6,7 +6,7 @@ defaults:
 seed: 9874
 
 bookmarks:
-  input_path: ${paths.tmp}/bookmarks_11_12_24.html
+  input_path: ${paths.tmp}/bookmarks_11_26_24.html
   folders:
     - EDU (Old 2021)
     - Work

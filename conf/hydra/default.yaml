@@ -11,5 +11,5 @@
 run:
   dir: outputs/${hydra.job.name}/${now:%Y-%m-%d}/${now:%H-%M-%S}
 sweep:
-  dir: outputs/${hydra.job.name}/multirun
-  subdir: ${now:%Y-%m-%d}/${now:%H-%M-%S}
+  dir: outputs/${hydra.job.name}/${now:%Y-%m-%d}/
+  subdir: ${hydra.job.override_dirname}/${now:%H-%M-%S}
