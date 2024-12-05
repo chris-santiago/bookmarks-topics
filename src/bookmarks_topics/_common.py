@@ -1,11 +1,32 @@
+
+import dataclasses
 import pickle
 from collections import namedtuple
 import json
 
 
-Bookmark = namedtuple("Bookmark", ["title", "url"])
-Website = namedtuple("Website", ["title", "url", "content"])
-Topic = namedtuple("BookmarkTopic", ["title", "url", "content", "topic"])
+@dataclasses.dataclass
+class Bookmark:
+    title: str
+    url: str
+    folder: str = ""
+
+
+@dataclasses.dataclass
+class Website:
+    title: str
+    url: str
+    content: str
+    folder: str = ""
+
+
+@dataclasses.dataclass
+class Topic:
+    title: str
+    url: str
+    content: str
+    topic: str
+    folder: str = ""
 
 
 def to_pickle(obj: object, file_path: str):
