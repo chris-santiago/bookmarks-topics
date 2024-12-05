@@ -1,0 +1,69 @@
+topics:
+  topic_model:
+    seed_topic_list:
+      - Machine Learning
+      - Data Science
+      - Data Visualization
+      - Workflow Orchestration
+      - Pytorch
+      - D3.js
+      - Deep Learning
+      - Feature Engineering
+      - Hugging Face
+      - Time Series Analysis
+      - Web Scraping
+      - Data Analysis Tools
+      - Simulation Frameworks
+      - Gradient Boosting
+      - Naive Bayes
+      - Bayesian Data Analysis
+      - Hyperparameter Optimization
+      - MapReduc
+      - Georgia Tech
+      - Johns Hopkins
+      - School
+      - Online Classes
+      - Linear Regression
+      - Forecasting
+      - Statistical Modeling
+      - Government Data
+      - R
+      - Cross Validation
+      - Statistics
+      - Hydra Configuration
+      - MLOps
+      - Stocks
+      - Finance
+      - Data Wrangling
+      - Predictive Modeling
+      - Clustering
+      - Unsupervised Learning
+      - String Matching
+      - Julia
+      - Python Tools
+      - Causal Inference
+      - Network Analysis
+      - AWS
+      - Flask
+      - Large Language Models
+      - Documentation
+      - Git
+      - Environment Management
+      - Econometrics
+      - Interpretable ML
+      - Kubernetes
+      - Jupyter
+      - Shell Scripting
+      - Transformer Models
+      - Optimization
+      - Regex
+      - Automation
+      - ML Pipelines
+      - Natural Language Processing
+      - Java
+      - Economics
+      - Change Detection
+      - Python Testing
+      - PyTorch Lightning
+      - Dashboards
+      - Statistical Analysis

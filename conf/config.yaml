@@ -2,6 +2,7 @@ defaults:
   - hydra: default
   - paths: home
   - prompt: openai/title_case
+  - seed_words: custom
 
 seed: 9874
 
@@ -64,11 +65,13 @@ topics:
 
   topic_model:
     _target_: bertopic.BERTopic
-    top_n_words: 10
+    top_n_words: 5
     n_gram_range:
       _target_: builtins.tuple
       _args_:
         - [ 1, 1 ]
     min_topic_size: 5
+    # auto, int, or None
+    nr_topics: null
 
 
