@@ -3,13 +3,14 @@ import dataclasses
 import pickle
 from collections import namedtuple
 import json
+import typing as T
 
 
 @dataclasses.dataclass
 class Bookmark:
     title: str
     url: str
-    folder: str = ""
+    folders: T.List[str]
 
 
 @dataclasses.dataclass
@@ -17,7 +18,7 @@ class Website:
     title: str
     url: str
     content: str
-    folder: str = ""
+    folders: T.List[str]
 
 
 @dataclasses.dataclass
@@ -26,7 +27,7 @@ class Topic:
     url: str
     content: str
     topic: str
-    folder: str = ""
+    folders: T.List[str]
 
 
 def to_pickle(obj: object, file_path: str):
