@@ -13,6 +13,7 @@ bookmarks:
     - Work
     - MLOps
   output_path: ${paths.tmp}/bookmarks.pkl
+  keep_folder_hierarchy: True
 
 html:
   input_path: ${paths.tmp}/bookmarks.pkl
@@ -22,11 +23,16 @@ parse:
   input_path: ${paths.tmp}/raw_html.pkl
   output_path: ${paths.tmp}/parsed_html.pkl
   websites_path: ${paths.tmp}/websites.pkl
+  # Bookmark.folders that won't have any meaning in topic modeling
+  # Leave as empty list `[ ]` if you don't want to drop any
+  drop_folders:
+    - Imported
+    - EDU (Old 2021)
 
 topics:
   input_path: ${paths.tmp}/websites.pkl
   topics_path: ${paths.tmp}/topics.json
-  truncate: 500
+  truncate: 1000
   bookmark_topics_path: ${hydra:runtime.output_dir}/bookmark_topics.json
   bookmark_html_path:  ${hydra:runtime.output_dir}/new_bookmarks.html
   topic_info_path: ${hydra:runtime.output_dir}/topic_info.csv
