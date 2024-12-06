@@ -21,7 +21,13 @@ def main(cfg):
     text_content = [get_text_content(doc) for doc in raw_html]
     C.to_pickle(text_content, cfg.parse.output_path)
     websites = [
-        C.Website(x[0][0], x[0][1], x[1]) for x in zip(bookmarks_data, text_content)
+        C.Website(
+            title=x[0].title,
+            url=x[0].url,
+            content=x[1],
+            folders=[f for f in x[0].folders if f not in cfg.parse.drop_folders],
+        )
+        for x in zip(bookmarks_data, text_content)
     ]
     C.to_pickle(websites, cfg.parse.websites_path)
 
