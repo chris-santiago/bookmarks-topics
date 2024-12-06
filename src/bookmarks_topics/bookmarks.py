@@ -42,12 +42,12 @@ class BookmarkReader:
                 folders = list(folders_set.keys())[:n_parents]
             else:
                 folders = list(folders_set.keys())
-            record = {
-                "folders": folders,
-                "title": link.text,
-                "url": link.attrs["href"]
-            }
-            results.append(record)
+            bookmark = C.Bookmark(
+                title=link.text,
+                url=link.attrs["href"],
+                folders=folders,
+            )
+            results.append(bookmark)
         return results
 
     def get_all(self):
@@ -78,7 +78,7 @@ class BookmarkReader:
 @hydra.main(config_path="../../conf", config_name="config", version_base="1.3")
 def main(cfg):
     reader = BookmarkReader(cfg.bookmarks.input_path)
-    reader.get(folders=cfg.bookmarks.folders)
+    reader.get(folders=cfg.bookmarks.folders, keep_folder_hierarchy=cfg.bookmarks.keep_folder_hierarchy)
     C.to_pickle(reader.bookmarks, cfg.bookmarks.output_path)
 
 
