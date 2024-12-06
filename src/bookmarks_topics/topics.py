@@ -54,8 +54,9 @@ def to_html(bookmarks, output_file="new_bookmarks.html"):
 def main(cfg):
     websites = C.from_pickle(cfg.topics.input_path)
     titles = [w.title for w in websites]
+    folders = [" ".join(w.folders) for w in websites]
     content = [truncate_doc(x, cfg.topics.truncate) for x in websites]
-    docs = [a + b for a, b in zip(titles, content)]
+    docs = [f"{a} {b} {c}" for a, b, c in zip(folders, titles, content)]
 
     openai_client = openai.OpenAI(api_key=os.environ["OPENAI_KEY"])
 
@@ -88,13 +89,21 @@ def main(cfg):
 
     topic_names = [topics[t][0][0] for t in topic_model.topics_]
     bookmark_topics = [
-        C.Topic(*a, b) for a, b in zip(websites, topic_names)
+        C.Topic(
+            title=a.title,
+            url=a.url,
+            content=a.content,
+            topic=b,
+            folders=a.folders,
+        )
+        for a, b in zip(websites, topic_names)
     ]
     records = [
         {
             "url": t.url,
             "title": t.title,
             "topic": t.topic,
+            "folders": "|".join(t.folders),
         }
         for t in bookmark_topics
     ]
